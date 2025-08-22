@@ -1,0 +1,94 @@
+:root {
+  --brand: #2563eb;
+  --brand-dark: #1d4ed8;
+  --bg: #f6f7fb;
+  --text: #222;
+  --muted: #6b7280;
+  --danger: #dc2626;
+  --card: #fff;
+  --shadow: 0 8px 24px rgba(0,0,0,.06);
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--brand);
+  color: #fff;
+  padding: 14px 20px;
+}
+.nav a { color: #fff; text-decoration: none; }
+.nav-left a { font-weight: 700; }
+.nav-right { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0; }
+
+.container {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.header-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #e5e7eb;
+  color: #111827;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(0.98); }
+.btn.primary { background: var(--brand); color: #fff; }
+.btn.primary:hover { background: var(--brand-dark); }
+.btn.danger { background: var(--danger); color: #fff; }
+.btn.small { padding: 6px 10px; font-size: 14px; }
+
+.muted { color: var(--muted); }
+
+.task-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.task-item {
+  display: grid; grid-template-columns: 1fr auto; gap: 8px;
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 16px;
+}
+.task-item.is-complete { opacity: .8; }
+.task-title { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.task-desc { color: #374151; margin: 4px 0 8px; }
+.task-meta { color: var(--muted); font-size: 14px; }
+.task-actions { display: flex; gap: 8px; align-items: center; }
+
+.pill {
+  display: inline-block; padding: 2px 8px; border-radius: 999px;
+  font-size: 12px; color: #fff;
+}
+.pill.high { background: #b91c1c; }
+.pill.medium { background: #f59e0b; }
+.pill.low { background: #16a34a; }
+
+.done-badge {
+  font-size: 12px; color: #059669; background: #ecfdf5; border: 1px solid #a7f3d0;
+  padding: 2px 6px; border-radius: 999px;
+}

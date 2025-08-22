@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}My Tasks · ToDo App{% endblock %}
+{% block content %}
+  <div class="header-row">
+    <h2>My Tasks</h2>
+    <a class="btn primary" href="{% url 'task_create' %}">+ Add Task</a>
+  </div>
+
+  {% if tasks %}
+    <ul class="task-list">
+      {% for task in tasks %}
+        <li class="task-item {% if task.completed %}is-complete{% endif %}">
+          <div class="task-main">
+            <div class="task-title">
+              {{ task.title }}
+              <span class="pill {{ task.priority|lower }}">{{ task.priority }}</span>
+              {% if task.completed %}<span class="done-badge">Done</span>{% endif %}
+            </div>
+            {% if task.description %}
+              <div class="task-desc">{{ task.description }}</div>
+            {% endif %}
+            <div class="task-meta">
+              {% if task.deadline %}Due: {{ task.deadline }} · {% endif %}
+              Created: {{ task.created_at|date:"Y-m-d H:i" }}
+            </div>
+          </div>
+          <div class="task-actions">
+            <a class="btn small" href="{% url 'task_update' task.id %}">Edit</a>
+            <a class="btn small danger" href="{% url 'task_delete' task.id %}">Delete</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">No tasks yet. Click “Add Task” to create your first one.</p>
+  {% endif %}
+{% endblock %}

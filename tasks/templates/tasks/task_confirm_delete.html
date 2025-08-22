@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Delete Task · ToDo App{% endblock %}
+{% block content %}
+  <div class="card">
+    <h2>Delete Task</h2>
+    <p>Are you sure you want to delete “<strong>{{ task.title }}</strong>”?</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn danger">Yes, Delete</button>
+      <a class="btn" href="{% url 'task_list' %}">Cancel</a>
+    </form>
+  </div>
+{% endblock %}
