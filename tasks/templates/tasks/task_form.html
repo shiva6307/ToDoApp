@@ -3,11 +3,68 @@
 {% block content %}
   <div class="card">
     <h2>{% if form.instance.pk %}Edit Task{% else %}Add Task{% endif %}</h2>
-    <form method="post">
+    <form method="post" autocomplete="off">
       {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn primary">Save</button>
-      <a class="btn" href="{% url 'task_list' %}">Cancel</a>
+      <div class="form-group">
+        {{ form.title.label_tag }}
+        {{ form.title }}
+        {% if form.title.errors %}
+          <div class="field-error">
+            {% for error in form.title.errors %}
+              {{ error }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.description.label_tag }}
+        {{ form.description }}
+        {% if form.description.errors %}
+          <div class="field-error">
+            {% for error in form.description.errors %}
+              {{ error }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.priority.label_tag }}
+        {{ form.priority }}
+        {% if form.priority.errors %}
+          <div class="field-error">
+            {% for error in form.priority.errors %}
+              {{ error }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.deadline.label_tag }}
+        {{ form.deadline }}
+        {% if form.deadline.errors %}
+          <div class="field-error">
+            {% for error in form.deadline.errors %}
+              {{ error }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="form-group checkbox-row">
+        <label for="{{ form.completed.id_for_label }}">
+          {{ form.completed }} Completed
+        </label>
+        {% if form.completed.errors %}
+          <div class="field-error">
+            {% for error in form.completed.errors %}
+              {{ error }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn primary">Save</button>
+        <a class="btn cancel-btn" href="{% url 'task_list' %}">Cancel</a>
+      </div>
     </form>
   </div>
 {% endblock %}
